@@ -25,9 +25,9 @@ public class ShortSub2 {
                 }
             }
 
-            if(i==0 && sum < k) { //will never happen
-                return -1;
-            }
+//            if(i==0 && sum < k) { //will never happen
+//                return -1;
+//            }
 
             if(shortestLength == -1){
                 shortestLength = lengthOfSubArray;
