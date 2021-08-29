@@ -1,25 +1,42 @@
 package com.learn.sub;
 
+import java.util.Arrays;
+
 public class Kadane {
 
-    public int shortestSubarray(int[] nums, int k) {
-        int maxSoFar = 0;
-        int maxEndingHere = 0;
-
-        for(int i=0; i<nums.length; i++){
-
-            maxEndingHere +=nums[i];
-
-            if(maxEndingHere < 0 )
-                maxEndingHere = 0;
-            else
-            {
-                if(maxSoFar < maxEndingHere)
-                    maxSoFar = maxEndingHere;
+    public void print(int [][] axx){
+        for(int i=0; i< axx.length; i++){
+            for(int j=0; j< axx[i].length; j++){
+                System.out.print(axx[i][j]+" ");
             }
+            System.out.print("\n");
         }
+    }
 
-        return maxSoFar;
+    public int shortestSubarray(int[] nums, int k) {
+
+        //create a 2d array
+
+        int arr[][] = new int[nums.length][nums.length];
+
+        for(int i=0;i< arr.length; i++){
+
+            for(int j=0; j< arr[i].length-i; j++){
+
+                if(i==0){
+                    if(nums[j] >= k )
+                        return 1;
+                    arr[i][j] = nums[j];
+                }
+            }
+
+
+        }
+        this.print(arr);
+
+
+
+        return 0;
 
     }
 
@@ -28,7 +45,7 @@ public class Kadane {
         int arr[] = {-2, -3, 10, 1, -10};
 
         Kadane kadane  = new Kadane();
-        int res = kadane.shortestSubarray(arr, arr.length);
+        int res = kadane.shortestSubarray(arr, 20);
         System.out.println(res);
     }
 }
