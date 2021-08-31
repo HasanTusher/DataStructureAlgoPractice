@@ -27,16 +27,16 @@ public class Kadane {
                     if(nums[j] >= k )
                         return 1;
                     arr[i][j] = nums[j];
+                }else{
+                    arr[i][j] = arr[i-1][j]+nums[j+i];
+                    if(arr[i][j] >= k)
+                        return i+1;
+
                 }
             }
-
-
         }
-        this.print(arr);
-
-
-
-        return 0;
+        //this.print(arr);
+        return -1;
 
     }
 
@@ -45,7 +45,7 @@ public class Kadane {
         int arr[] = {-2, -3, 10, 1, -10};
 
         Kadane kadane  = new Kadane();
-        int res = kadane.shortestSubarray(arr, 20);
+        int res = kadane.shortestSubarray(arr, 11);
         System.out.println(res);
     }
 }
