@@ -27,8 +27,23 @@ public class AddTwoNumber {
 
         }
 
+        StringBuilder stringBuilder = new StringBuilder();
+        int firstNumber;
+        while (sizeOfFirst > 0){
+            stringBuilder.append(deque.pollFirst());
+            sizeOfFirst--;
+        }
 
+        firstNumber = Integer.parseInt(stringBuilder.toString());
+        //clear for new one
+        stringBuilder.setLength(0);
 
+        int secondNumber;
+        while (sizeOfLast > 0){
+            stringBuilder.append(deque.pollLast());
+            sizeOfLast--;
+        }
+        secondNumber = Integer.parseInt(stringBuilder.toString());
         return new ListNode();
 
     }
