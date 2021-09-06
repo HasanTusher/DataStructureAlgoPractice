@@ -28,36 +28,58 @@ public class AddTwoNumber {
         }
 
         StringBuilder stringBuilder = new StringBuilder();
-        int firstNumber;
+        long firstNumber;
         while (sizeOfFirst > 0){
             stringBuilder.append(deque.pollFirst());
             sizeOfFirst--;
         }
 
-        firstNumber = Integer.parseInt(stringBuilder.toString());
+        firstNumber = Long.parseLong(stringBuilder.toString());
         //clear for new one
         stringBuilder.setLength(0);
 
-        int secondNumber;
+        long secondNumber;
         while (sizeOfLast > 0){
             stringBuilder.append(deque.pollLast());
             sizeOfLast--;
         }
-        secondNumber = Integer.parseInt(stringBuilder.toString());
-        return new ListNode();
+        secondNumber = Long.parseLong(stringBuilder.toString());
+
+        long result = firstNumber+secondNumber;
+        stringBuilder.setLength(0);
+        String s = stringBuilder.append(result).reverse().toString();
+        ListNode head = null;
+        ListNode tail = null;
+        for (int i = 0; i < s.length(); i++) {
+            if(i==0){
+                head = new ListNode(Character.getNumericValue(s.charAt(i)), null);
+                tail = head;
+            }else{
+                ListNode temp = new ListNode(Character.getNumericValue(s.charAt(i)), null);
+                tail.next = temp;
+                tail = temp;
+            }
+        }
+        head.printList();
+        return head;
 
     }
 
 
     public static void main(String[] args) {
-        int arr[] = {1,2,3,4,5};
-        int arr2[] = {9,8,7,6};
+//        int arr[] = {2,4,3};
+//        int arr2[] = {5,6,4};
+//        int arr[] = {9};
+//        int arr2[] = {1,9,9,9,9,9,9,9,9,9};
+
+        int arr[] = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
+        int arr2[] ={5,6,4};
 
         ListNode listNode1 = createListNode(arr);
         ListNode listNode2 = createListNode(arr2);
 
-        listNode1.printList();
-        listNode2.printList();
+        //listNode1.printList();
+        //listNode2.printList();
 
         AddTwoNumber addTwoNumber = new AddTwoNumber();
         addTwoNumber.addTwoNumbers(listNode1, listNode2);

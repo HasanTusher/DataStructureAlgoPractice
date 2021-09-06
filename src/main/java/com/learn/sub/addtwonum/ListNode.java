@@ -35,7 +35,7 @@ public class ListNode {
 
     public void printList(){
         ListNode ptr = this;
-        while (ptr.next !=null){
+        while (ptr !=null){
             System.out.println(ptr.val +" ");
             ptr = ptr.next;
         }
