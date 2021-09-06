@@ -32,6 +32,15 @@ public class ListNode {
     public void setNext(ListNode next) {
         this.next = next;
     }
+
+    public void printList(){
+        ListNode ptr = this;
+        while (ptr.next !=null){
+            System.out.println(ptr.val +" ");
+            ptr = ptr.next;
+        }
+        System.out.print("\n");
+    }
 }
 
 
