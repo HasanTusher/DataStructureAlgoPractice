@@ -1,5 +1,6 @@
 package com.learn.sub.addtwonum;
 
+import java.math.BigInteger;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,24 +29,24 @@ public class AddTwoNumber {
         }
 
         StringBuilder stringBuilder = new StringBuilder();
-        long firstNumber;
+        BigInteger firstNumber;
         while (sizeOfFirst > 0){
             stringBuilder.append(deque.pollFirst());
             sizeOfFirst--;
         }
 
-        firstNumber = Long.parseLong(stringBuilder.toString());
+        firstNumber = new BigInteger(stringBuilder.toString());
         //clear for new one
         stringBuilder.setLength(0);
 
-        long secondNumber;
+        BigInteger secondNumber;
         while (sizeOfLast > 0){
             stringBuilder.append(deque.pollLast());
             sizeOfLast--;
         }
-        secondNumber = Long.parseLong(stringBuilder.toString());
+        secondNumber = new BigInteger(stringBuilder.toString());
 
-        long result = firstNumber+secondNumber;
+        BigInteger result = firstNumber.add(secondNumber);
         stringBuilder.setLength(0);
         String s = stringBuilder.append(result).reverse().toString();
         ListNode head = null;
