@@ -1,4 +1,4 @@
-package com.learn.sub.reverse;
+package com.learn.sub.mergetwosortedarray;
 
 import java.util.Arrays;
 
