@@ -1,4 +1,4 @@
-package com.learn.sub.longestsubstringwithoutrepeat;
+package com.learn.sub.longestSubstringWithoutRepeat;
 
 public class LongestSubStringWithoutRepeat {
 

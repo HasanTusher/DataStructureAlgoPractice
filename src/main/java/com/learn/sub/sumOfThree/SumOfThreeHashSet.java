@@ -1,4 +1,4 @@
-package com.learn.sub.sumofthree;
+package com.learn.sub.sumOfThree;
 
 import java.util.ArrayList;
 import java.util.HashSet;

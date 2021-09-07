@@ -1,4 +1,4 @@
-package com.learn.sub.mergetwosortedarray;
+package com.learn.sub.mergeTwoSortedArray;
 
 import java.util.Arrays;
 

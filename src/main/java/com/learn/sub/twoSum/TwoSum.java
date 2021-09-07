@@ -1,8 +1,7 @@
-package com.learn.sub.twosum;
+package com.learn.sub.twoSum;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class TwoSum {
 
