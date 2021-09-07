@@ -8,20 +8,37 @@ public class MergeTwoSortedArray {
 
         int left =0;
         int right = 0;
+        int index =0;
+        int[] res = new int[m+n];
 
         while (left < m && right < n){
-            if(nums1[left] > nums2[right]){
-                int temp = nums1[left];
-                nums1[left] = nums2[right];
-                nums2[right] = temp;
+            if(nums1[left]< nums2[right]){
+                res[index] = nums1[left];
+                left++;
+                index++;
+            }else{
+                res[index] = nums2[right];
+                right++;
+                index++;
             }
-            left++;
         }
 
         while (right < n){
-            nums1[left] = nums2[right];
-            left++;
+            res[index] = nums2[right];
             right++;
+            index++;
+//            nums1[left] = nums2[right];
+//            left++;
+//            right++;
+        }
+        while (left < m){
+            res[index] = nums1[left];
+            left++;
+            index++;
+        }
+
+        for(int i=0;i <(m+n); i++){
+            nums1[i] = res[i];
         }
 
     }
