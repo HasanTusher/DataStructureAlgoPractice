@@ -15,7 +15,7 @@ public class LongestSubStringWithoutRepeat {
                 sub = sub.substring(sub.indexOf(cur)+1);
 
             }
-            sub = sub + String.valueOf(c); //add the sub to current result
+            sub = sub + cur; //add the sub to current result
             length = Math.max(sub.length(), length);
         }
 
