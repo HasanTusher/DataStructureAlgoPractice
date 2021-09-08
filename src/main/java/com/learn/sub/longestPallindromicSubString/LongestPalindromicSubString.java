@@ -1,4 +1,4 @@
-package com.learn.sub;
+package com.learn.sub.longestPallindromicSubString;
 
 public class LongestPalindromicSubString {
 
