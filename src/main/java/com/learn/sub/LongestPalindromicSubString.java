@@ -3,12 +3,11 @@ package com.learn.sub;
 public class LongestPalindromicSubString {
 
     private String isPalindrome(int start, int finish, String s){
-        StringBuilder stringBuilder = new StringBuilder(s.substring(start, finish));
+        StringBuilder stringBuilder = new StringBuilder(s.substring(start, finish+1));
         if(stringBuilder.toString().equals(stringBuilder.reverse().toString()))
                 return stringBuilder.toString();
         return null;
     }
-
     public String longestPalindrome(String s) {
         for(int i = 0; i < s.length(); i++){
             int incStep = s.length() -i;
@@ -16,25 +15,14 @@ public class LongestPalindromicSubString {
                 int lastIndex = j+incStep;
                 if(lastIndex > s.length()-1)
                     break;
-                System.out.println("first:" +j +", last: "+ lastIndex);
+                //System.out.println("first:" +j +", last: "+ lastIndex);
                 String res = this.isPalindrome(j, lastIndex, s);
                 if(res!=null)
                     return res;
 
             }
         }
-
         return String.valueOf(s.charAt(0));
-
-
-//        StringBuilder stringBuilder;
-//        for(int i = s.length()-1; i > 0; i-- ){
-//            stringBuilder = new StringBuilder(s.substring(0, i));
-//            if(stringBuilder.toString().equals(stringBuilder.reverse().toString()))
-//                return stringBuilder.toString();
-//        }
-
-        //return String.valueOf(s.charAt(0));
     }
 
     public static void main(String[] args) {
