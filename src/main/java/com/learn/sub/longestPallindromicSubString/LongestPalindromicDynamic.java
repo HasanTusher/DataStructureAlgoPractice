@@ -81,6 +81,8 @@ public class LongestPalindromicDynamic {
 
     static int longestPalSubstr2(String str)
     {
+        int start = 0;
+        int length=0;
         int size = str.length();
 
         int[][] arr = new int[size][size];
@@ -89,6 +91,20 @@ public class LongestPalindromicDynamic {
         for(int i=0;i< size; i++)
             arr[i][i] = 1;
         print2dArray(arr);
+
+        for(int i=0; i< size-1; i++){
+            if(str.charAt(i) == str.charAt(i+1)){
+                arr[i][i+1] = 1;
+                length = 2;
+                start = i+1;
+            }
+        }
+
+
+
+
+        print2dArray(arr);
+
 
         return 0;
     }
