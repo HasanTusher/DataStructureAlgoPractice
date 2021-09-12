@@ -79,7 +79,7 @@ public class LongestPalindromicDynamic {
             System.out.println(Arrays.toString(x));
     }
 
-    static int longestPalSubstr2(String str)
+    static String longestPalSubstr2(String str)
     {
         int start = 0;
         int length=0;
@@ -87,33 +87,60 @@ public class LongestPalindromicDynamic {
 
         int[][] arr = new int[size][size];
 
+        if(str.length() ==1)
+            return str;
 
         for(int i=0;i< size; i++)
             arr[i][i] = 1;
-        print2dArray(arr);
+        //print2dArray(arr);
 
         for(int i=0; i< size-1; i++){
             if(str.charAt(i) == str.charAt(i+1)){
                 arr[i][i+1] = 1;
                 length = 2;
-                start = i+1;
+                start = i;
             }
         }
 
+        for (int k=3; k <= size; k++){
+            System.out.println("for k: "+k);
+            for(int j=0; j< size-k+1; j++){
+
+                int last = j+k-1;
+                if(str.charAt(j) == str.charAt(last) &&
+                    arr[j+1][last-1] == 1)
+                { //found the palindrome
+                    arr[j][last] = 1;
+
+                    if(k > length){
+                        length  = k;
+                        start = j;
+                    }
+
+                }
+
+                //System.out.println("from: "+j+"; to: "+last);
+            }
+
+        }
 
 
+        //System.out.println(str.substring(start, start+length));
+        if(length == 0){
+            return String.valueOf(str.charAt(0));
+        }
 
-        print2dArray(arr);
-
-
-        return 0;
+        return str.substring(start, start+length);
     }
 
     // Driver program to test above functions
     public static void main(String[] args)
     {
 
-        String str = "forgeeksskeegfor";
+//        String str = "ebabc";
+//        String str = "forgeeksskeegfor";
+        String str = "cb";
+
         System.out.println("Length is: " + longestPalSubstr2(str));
     }
 }
