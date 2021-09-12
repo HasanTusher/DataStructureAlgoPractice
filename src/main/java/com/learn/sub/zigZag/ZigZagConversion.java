@@ -6,7 +6,9 @@ public class ZigZagConversion {
 
 
         for (int i = 0; i < numRows; i++) {
-           int stepSize = numRows+2;
+
+            int originalStepsize = numRows+2;
+            int stepSize = originalStepsize - i;
 
            for (int j = 0; j < numRows; j++) {
                int index = j*stepSize;
