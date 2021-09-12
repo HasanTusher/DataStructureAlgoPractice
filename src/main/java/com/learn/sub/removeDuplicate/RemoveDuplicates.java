@@ -1,7 +1,6 @@
-package com.learn.sub;
+package com.learn.sub.removeDuplicate;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class RemoveDuplicates {
     public int removeDuplicates(int[] nums) {
