@@ -107,8 +107,6 @@ public class IntegerToRoman {
         StringBuilder stringBuilder = new StringBuilder();
         for (DecimalResult integer:
              integers) {
-            //System.out.println(integer);
-            //System.out.println(this.processDecimalResult(integer, integerStringHashMap));
             stringBuilder.append(this.processDecimalResult(integer, integerStringHashMap));
         }
 
@@ -128,6 +126,16 @@ public class IntegerToRoman {
             romanBase = integerStringHashMap.get(decimalResult.getDecimalValue());
 
         StringBuilder stringBuilder = new StringBuilder();
+
+        if(decimalResult.getActualValue() > 50 && decimalResult.getActualValue() < 90){
+            romanBase = integerStringHashMap.get(50);
+            stringBuilder.append(romanBase);
+            int rest = decimalResult.getActualValue() - 50;
+            //System.out.println(rest);
+            stringBuilder.append(this.intToRoman(rest));
+            return stringBuilder.toString();
+        }
+
         for(int i=0; i< decimalResult.getCount(); i++){
             stringBuilder.append(romanBase);
         }
@@ -142,6 +150,6 @@ public class IntegerToRoman {
 
     public static void main(String[] args) {
         IntegerToRoman integerToRoman = new IntegerToRoman();
-        System.out.println(integerToRoman.intToRoman(1994));
+        System.out.println(integerToRoman.intToRoman(88));
     }
 }
