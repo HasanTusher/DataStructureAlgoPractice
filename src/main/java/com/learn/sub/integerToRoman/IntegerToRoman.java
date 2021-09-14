@@ -5,6 +5,58 @@ import java.util.HashMap;
 import java.util.List;
 
 public class IntegerToRoman {
+
+
+    public class DecimalResult {
+        int decimalValue;
+        int count = 0;
+        int actualValue;
+
+        public int getActualValue() {
+            return actualValue;
+        }
+
+        public void setActualValue(int actualValue) {
+            this.actualValue = actualValue;
+        }
+
+        public int getCount() {
+            return count;
+        }
+
+        public void setCount(int count) {
+            this.count = count;
+        }
+
+        public DecimalResult(int count, int decimalValue, int actualValue) {
+            this.decimalValue = decimalValue;
+            this.count = count;
+            this.actualValue = actualValue;
+        }
+
+        public DecimalResult(int count, int decimalValue) {
+            this.decimalValue = decimalValue;
+            this.count = count;
+        }
+
+        public int getDecimalValue() {
+            return decimalValue;
+        }
+
+        public void setDecimalValue(int decimalValue) {
+            this.decimalValue = decimalValue;
+        }
+
+        @Override
+        public String toString() {
+            return "DecimalResult{" +
+                    "decimalValue=" + decimalValue +
+                    ", count=" + count +
+                    ", actualValue=" + actualValue +
+                    '}';
+        }
+    }
+
     /**
      * Number to Decimal Place parser
      *
@@ -27,12 +79,10 @@ public class IntegerToRoman {
 
 
     public String intToRoman(int num) {
-        String input = String.valueOf(num);
-        String roman[] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
         HashMap<Integer, String> integerStringHashMap = new HashMap<>();
         integerStringHashMap.put(1, "I");
-        integerStringHashMap.put(2, "I");
-        integerStringHashMap.put(3, "I");
+        integerStringHashMap.put(2, "II");
+        integerStringHashMap.put(3, "III");
         integerStringHashMap.put(4, "IV");
         integerStringHashMap.put(5, "V");
         integerStringHashMap.put(6, "VI");
@@ -46,7 +96,7 @@ public class IntegerToRoman {
         integerStringHashMap.put(100, "C");
         integerStringHashMap.put(500, "D");
         integerStringHashMap.put(1000, "M");
-        integerStringHashMap.put(90, "CL");
+        integerStringHashMap.put(90, "XC");
         integerStringHashMap.put(40, "XL");
         integerStringHashMap.put(400, "CD");
         integerStringHashMap.put(900, "CM");
@@ -92,6 +142,6 @@ public class IntegerToRoman {
 
     public static void main(String[] args) {
         IntegerToRoman integerToRoman = new IntegerToRoman();
-        System.out.println(integerToRoman.intToRoman(20));
+        System.out.println(integerToRoman.intToRoman(1994));
     }
 }
