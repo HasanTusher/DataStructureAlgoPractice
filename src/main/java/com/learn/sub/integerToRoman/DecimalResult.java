@@ -4,6 +4,14 @@ public class DecimalResult {
     int decimalValue;
     int count = 0;
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     public DecimalResult(int count, int decimalValue) {
         this.decimalValue = decimalValue;
         this.count = count;

@@ -38,11 +38,27 @@ public class IntegerToRoman {
         integerStringHashMap.put(1000, "M");
         List<DecimalResult> integers = this.numberDecimalParser(num);
 
+        StringBuilder stringBuilder = new StringBuilder();
         for (DecimalResult integer:
              integers) {
-            System.out.println(integer);
+            this.processDecimalResult(integer, integerStringHashMap);
         }
+
         return null;
+
+
+    }
+
+    private String processDecimalResult(DecimalResult decimalResult, HashMap<Integer, String> integerStringHashMap) {
+        String  a  = integerStringHashMap.get(decimalResult.getDecimalValue()); //get the key
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i=0; i< decimalResult.getCount(); i++){
+            stringBuilder.append(a);
+        }
+
+        System.out.println(decimalResult.toString());
+        System.out.println(stringBuilder.toString());
+        return stringBuilder.toString();
 
 
     }
@@ -50,7 +66,6 @@ public class IntegerToRoman {
 
     public static void main(String[] args) {
         IntegerToRoman integerToRoman = new IntegerToRoman();
-
         integerToRoman.intToRoman(1094);
     }
 }
