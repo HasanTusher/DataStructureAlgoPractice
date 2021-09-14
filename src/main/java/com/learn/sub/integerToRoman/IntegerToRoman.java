@@ -31,20 +31,23 @@ public class IntegerToRoman {
         String roman[] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
         HashMap<Integer, String> integerStringHashMap = new HashMap<>();
         integerStringHashMap.put(1, "I");
+        integerStringHashMap.put(2, "I");
+        integerStringHashMap.put(3, "I");
+        integerStringHashMap.put(4, "IV");
         integerStringHashMap.put(5, "V");
+        integerStringHashMap.put(6, "VI");
+        integerStringHashMap.put(7, "VII");
+        integerStringHashMap.put(8, "VIII");
+        integerStringHashMap.put(9, "IX");
         integerStringHashMap.put(10, "X");
+
+
         integerStringHashMap.put(50, "L");
         integerStringHashMap.put(100, "C");
         integerStringHashMap.put(500, "D");
         integerStringHashMap.put(1000, "M");
-
-        //I can be placed before V (5) and X (10) to make 4 and 9.
-        //X can be placed before L (50) and C (100) to make 40 and 90.
-        //C can be placed before D (500) and M (1000) to make 400 and 900.
         integerStringHashMap.put(90, "CL");
         integerStringHashMap.put(40, "XL");
-        integerStringHashMap.put(9, "IX");
-        integerStringHashMap.put(4, "IV");
         integerStringHashMap.put(400, "CD");
         integerStringHashMap.put(900, "CM");
         List<DecimalResult> integers = this.numberDecimalParser(num);
@@ -54,11 +57,12 @@ public class IntegerToRoman {
         StringBuilder stringBuilder = new StringBuilder();
         for (DecimalResult integer:
              integers) {
-            System.out.println(integer);
-            System.out.println(this.processDecimalResult(integer, integerStringHashMap));
+            //System.out.println(integer);
+            //System.out.println(this.processDecimalResult(integer, integerStringHashMap));
+            stringBuilder.append(this.processDecimalResult(integer, integerStringHashMap));
         }
 
-        return null;
+        return stringBuilder.toString();
 
 
     }
@@ -88,6 +92,6 @@ public class IntegerToRoman {
 
     public static void main(String[] args) {
         IntegerToRoman integerToRoman = new IntegerToRoman();
-        integerToRoman.intToRoman(1040);
+        System.out.println(integerToRoman.intToRoman(20));
     }
 }
