@@ -17,8 +17,9 @@ public class IntegerToRoman {
         for(int i= s.length(); i > 0;i--){
             int divisor = (int) Math.pow(10, i-1);
             int result = input/ divisor;
+            int actualResult = result*divisor;
             input = input % divisor;
-            DecimalResult decimalResult = new DecimalResult(result, divisor);
+            DecimalResult decimalResult = new DecimalResult(result, divisor, actualResult);
             integerList.add(decimalResult);
         }
         return integerList;
@@ -50,10 +51,16 @@ public class IntegerToRoman {
     }
 
     private String processDecimalResult(DecimalResult decimalResult, HashMap<Integer, String> integerStringHashMap) {
-        String  a  = integerStringHashMap.get(decimalResult.getDecimalValue()); //get the key
+        int actualResult = decimalResult.count * decimalResult.getDecimalValue();
+        String romanBase;
+        if(integerStringHashMap.get(actualResult) != null)
+             romanBase  = integerStringHashMap.get(actualResult);
+        else
+            romanBase = integerStringHashMap.get(decimalResult.getDecimalValue());
+
         StringBuilder stringBuilder = new StringBuilder();
         for(int i=0; i< decimalResult.getCount(); i++){
-            stringBuilder.append(a);
+            stringBuilder.append(romanBase);
         }
 
         System.out.println(decimalResult.toString());
@@ -66,6 +73,6 @@ public class IntegerToRoman {
 
     public static void main(String[] args) {
         IntegerToRoman integerToRoman = new IntegerToRoman();
-        integerToRoman.intToRoman(1094);
+        integerToRoman.intToRoman(1040);
     }
 }

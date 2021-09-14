@@ -3,6 +3,15 @@ package com.learn.sub.integerToRoman;
 public class DecimalResult {
     int decimalValue;
     int count = 0;
+    int actualValue;
+
+    public int getActualValue() {
+        return actualValue;
+    }
+
+    public void setActualValue(int actualValue) {
+        this.actualValue = actualValue;
+    }
 
     public int getCount() {
         return count;
@@ -10,6 +19,12 @@ public class DecimalResult {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public DecimalResult(int count, int decimalValue, int actualValue) {
+        this.decimalValue = decimalValue;
+        this.count = count;
+        this.actualValue = actualValue;
     }
 
     public DecimalResult(int count, int decimalValue) {
@@ -30,6 +45,7 @@ public class DecimalResult {
         return "DecimalResult{" +
                 "decimalValue=" + decimalValue +
                 ", count=" + count +
+                ", actualValue=" + actualValue +
                 '}';
     }
 }
