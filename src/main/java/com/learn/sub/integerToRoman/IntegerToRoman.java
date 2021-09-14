@@ -136,6 +136,15 @@ public class IntegerToRoman {
             return stringBuilder.toString();
         }
 
+        if(decimalResult.getActualValue() > 500 && decimalResult.getActualValue() < 900){
+            romanBase = integerStringHashMap.get(500);
+            stringBuilder.append(romanBase);
+            int rest = decimalResult.getActualValue() - 500;
+            //System.out.println(rest);
+            stringBuilder.append(this.intToRoman(rest));
+            return stringBuilder.toString();
+        }
+
         for(int i=0; i< decimalResult.getCount(); i++){
             stringBuilder.append(romanBase);
         }
@@ -150,6 +159,6 @@ public class IntegerToRoman {
 
     public static void main(String[] args) {
         IntegerToRoman integerToRoman = new IntegerToRoman();
-        System.out.println(integerToRoman.intToRoman(88));
+        System.out.println(integerToRoman.intToRoman(600));
     }
 }
