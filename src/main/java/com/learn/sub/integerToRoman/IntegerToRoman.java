@@ -1,4 +1,4 @@
-package com.learn.sub;
+package com.learn.sub.integerToRoman;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,14 +11,15 @@ public class IntegerToRoman {
      * @param input
      * @return ArrayList
      */
-    public List<Integer> numberDecimalParser(int input){
+    public List<DecimalResult> numberDecimalParser(int input){
         String s = String.valueOf(input);
-        List<Integer> integerList = new ArrayList<>();
+        List<DecimalResult> integerList = new ArrayList<>();
         for(int i= s.length(); i > 0;i--){
             int divisor = (int) Math.pow(10, i-1);
             int result = input/ divisor;
             input = input % divisor;
-            integerList.add((int) (result*Math.pow(10, i-1)));
+            DecimalResult decimalResult = new DecimalResult(result, divisor);
+            integerList.add(decimalResult);
         }
         return integerList;
     }
@@ -35,10 +36,9 @@ public class IntegerToRoman {
         integerStringHashMap.put(100, "C");
         integerStringHashMap.put(500, "D");
         integerStringHashMap.put(1000, "M");
+        List<DecimalResult> integers = this.numberDecimalParser(num);
 
-        List<Integer > integers = this.numberDecimalParser(num);
-
-        for (Integer integer:
+        for (DecimalResult integer:
              integers) {
             System.out.println(integer);
         }
