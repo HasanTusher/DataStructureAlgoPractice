@@ -37,12 +37,25 @@ public class IntegerToRoman {
         integerStringHashMap.put(100, "C");
         integerStringHashMap.put(500, "D");
         integerStringHashMap.put(1000, "M");
+
+        //I can be placed before V (5) and X (10) to make 4 and 9.
+        //X can be placed before L (50) and C (100) to make 40 and 90.
+        //C can be placed before D (500) and M (1000) to make 400 and 900.
+        integerStringHashMap.put(90, "CL");
+        integerStringHashMap.put(40, "XL");
+        integerStringHashMap.put(9, "IX");
+        integerStringHashMap.put(4, "IV");
+        integerStringHashMap.put(400, "CD");
+        integerStringHashMap.put(900, "CM");
         List<DecimalResult> integers = this.numberDecimalParser(num);
+
+
 
         StringBuilder stringBuilder = new StringBuilder();
         for (DecimalResult integer:
              integers) {
-            this.processDecimalResult(integer, integerStringHashMap);
+            System.out.println(integer);
+            System.out.println(this.processDecimalResult(integer, integerStringHashMap));
         }
 
         return null;
@@ -51,10 +64,12 @@ public class IntegerToRoman {
     }
 
     private String processDecimalResult(DecimalResult decimalResult, HashMap<Integer, String> integerStringHashMap) {
-        int actualResult = decimalResult.count * decimalResult.getDecimalValue();
+        //int actualResult = decimalResult.count * decimalResult.getDecimalValue();
         String romanBase;
-        if(integerStringHashMap.get(actualResult) != null)
-             romanBase  = integerStringHashMap.get(actualResult);
+        if(integerStringHashMap.get(decimalResult.getActualValue()) != null){
+            romanBase  = integerStringHashMap.get(decimalResult.getActualValue());
+            return romanBase;
+        }
         else
             romanBase = integerStringHashMap.get(decimalResult.getDecimalValue());
 
@@ -63,8 +78,8 @@ public class IntegerToRoman {
             stringBuilder.append(romanBase);
         }
 
-        System.out.println(decimalResult.toString());
-        System.out.println(stringBuilder.toString());
+        //System.out.println(decimalResult.toString());
+        //System.out.println(stringBuilder.toString());
         return stringBuilder.toString();
 
 
