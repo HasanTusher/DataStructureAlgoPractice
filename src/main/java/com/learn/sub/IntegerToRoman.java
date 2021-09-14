@@ -5,6 +5,24 @@ import java.util.HashMap;
 import java.util.List;
 
 public class IntegerToRoman {
+    /**
+     * Number to Decimal Place parser
+     *
+     * @param input
+     * @return ArrayList
+     */
+    public List<Integer> numberDecimalParser(int input){
+        String s = String.valueOf(input);
+        List<Integer> integerList = new ArrayList<>();
+        for(int i= s.length(); i > 0;i--){
+            int divisor = (int) Math.pow(10, i-1);
+            int result = input/ divisor;
+            input = input % divisor;
+            integerList.add((int) (result*Math.pow(10, i-1)));
+        }
+        return integerList;
+    }
+
 
     public String intToRoman(int num) {
         String input = String.valueOf(num);
@@ -18,16 +36,10 @@ public class IntegerToRoman {
         integerStringHashMap.put(500, "D");
         integerStringHashMap.put(1000, "M");
 
-        List<Integer> integerList = new ArrayList<>();
-        for(int i= input.length(); i > 0;i--){
-            int divisor = (int) Math.pow(10, i-1);
-            int result = num/ divisor;
-            num = num % divisor;
-            integerList.add((int) (result*Math.pow(10, i-1)));
-        }
+        List<Integer > integers = this.numberDecimalParser(num);
 
         for (Integer integer:
-             integerList) {
+             integers) {
             System.out.println(integer);
         }
         return null;
@@ -38,9 +50,7 @@ public class IntegerToRoman {
 
     public static void main(String[] args) {
         IntegerToRoman integerToRoman = new IntegerToRoman();
-//        integerToRoman.intToRoman(3);
-//        integerToRoman.intToRoman(3);
-//        integerToRoman.intToRoman(3);
-        integerToRoman.intToRoman(9);
+
+        integerToRoman.intToRoman(1094);
     }
 }
