@@ -13,16 +13,18 @@ public class SumOfThreeClosest {
                 for (int k = j+1; k < nums.length; k++) {
                     int tempSum = nums[i]+nums[j]+nums[k];
                     int distance = Math.abs(tempSum - target );
-
-                    maxDistance = Math.min(distance, maxDistance);
-                    sum = Math.min(sum, tempSum);
-
-                    System.out.println("sum: "+ tempSum+"; distance: "+distance);
+                    if(distance < maxDistance)
+                    {
+                        sum = tempSum;
+                        maxDistance = distance;
+                    }
+                    if(maxDistance == 0)
+                        return sum;
+                    //System.out.println("sum: "+ tempSum+"; distance: "+distance);
 
                 }
             }
         }
-
         return sum;
     }
 
