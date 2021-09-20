@@ -2,17 +2,18 @@ package com.learn.sub.disjoint;
 
 public class Disjoint2 {
     public int createDisjoint(int[] vals) {
-        int max = Integer.MIN_VALUE;
-        int min = Integer.MAX_VALUE;
-        boolean isDescending = true;
-        for (int i = 0; i < vals.length-1; i++) {
-            max = Math.max(vals[i+1], max);
-            min = Math.min(vals[i], min);
-            if(vals[i] < vals[i+1])
-                isDescending = false;
-        }
-
-        return isDescending ? 0 : max-min;
+//        int max = Integer.MIN_VALUE;
+//        int min = Integer.MAX_VALUE;
+//        boolean isDescending = true;
+//        for (int i = 0; i < vals.length-1; i++) {
+//            max = Math.max(vals[i+1], max);
+//            min = Math.min(vals[i], min);
+//            if(vals[i] < vals[i+1])
+//                isDescending = false;
+//        }
+//
+//        return isDescending ? 0 : max-min;
+        return 0;
     }
 
     public static void main(String[] args) {
