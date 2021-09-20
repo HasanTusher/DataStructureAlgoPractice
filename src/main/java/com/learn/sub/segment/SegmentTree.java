@@ -13,6 +13,12 @@ public class SegmentTree {
         for (int i = arr.length-1; i >= 0; i--) {
             segmentTree[arr.length+i] = arr[i];
         }
+
+        for(int i = arr.length-1; i>0; i--){
+            segmentTree[i] = Math.max(segmentTree[2*i], segmentTree[2*i+1]);
+        }
+
+
         System.out.println(Arrays.toString(segmentTree));
 
     }
