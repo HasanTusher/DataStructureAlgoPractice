@@ -17,10 +17,7 @@ public class Disjoint2 {
 
     public static void main(String[] args) {
         Disjoint2 disjoint2 = new Disjoint2();
-//        int arr[] ={7,1,5,3,6,4};
-//        int arr[] ={1,1,5,3,6,10};
-        int arr[] ={10, 9, 8, 7, 20};
-//        int arr[] ={7,6,4,3,1};
+        int arr[] ={5,1,3,10,7};
         System.out.println(disjoint2.createDisjoint(arr));
     }
 }
