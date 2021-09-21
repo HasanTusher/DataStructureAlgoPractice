@@ -16,16 +16,11 @@ public class SegmentTree {
     }
 
     public void createSegmentTree(int[] arr){
-
-        int segTreeLength = arr.length * 2;
-        //int segmentTree[] = new int[segTreeLength];
         System.arraycopy(this.arr, 0, this.tree, n, n);
-
         for(int i = arr.length-1; i>0; i--){
             this.tree[i] = Math.max(this.tree[2*i], this.tree[2*i+1]);
         }
         System.out.println(Arrays.toString(this.tree));
-
     }
 
     public static void main(String[] args) {
