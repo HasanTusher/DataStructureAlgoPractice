@@ -4,29 +4,34 @@ import java.util.Arrays;
 
 public class SegmentTree {
 
+    private int[] tree;
+    private int[] arr;
+    private int n;
 
+    public SegmentTree(int[] arr) {
+        this.arr = arr;
+        this.n = arr.length;
+        this.tree = new int[2*n];
+        this.createSegmentTree(arr);
+    }
 
     public void createSegmentTree(int[] arr){
 
         int segTreeLength = arr.length * 2;
-        int segmentTree[] = new int[segTreeLength];
-        for (int i = arr.length-1; i >= 0; i--) {
-            segmentTree[arr.length+i] = arr[i];
-        }
+        //int segmentTree[] = new int[segTreeLength];
+        System.arraycopy(this.arr, 0, this.tree, n, n);
 
         for(int i = arr.length-1; i>0; i--){
-            segmentTree[i] = Math.max(segmentTree[2*i], segmentTree[2*i+1]);
+            this.tree[i] = Math.max(this.tree[2*i], this.tree[2*i+1]);
         }
-
-
-        System.out.println(Arrays.toString(segmentTree));
+        System.out.println(Arrays.toString(this.tree));
 
     }
 
     public static void main(String[] args) {
-        SegmentTree segmentTree = new SegmentTree();
         int[] arr = {1,2,4,5,7,8};
-        segmentTree.createSegmentTree(arr);
+        SegmentTree segmentTree = new SegmentTree(arr);
+        //segmentTree.createSegmentTree(arr);
 
     }
 }
