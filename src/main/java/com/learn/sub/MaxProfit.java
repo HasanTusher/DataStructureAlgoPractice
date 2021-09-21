@@ -7,20 +7,20 @@ public class MaxProfit {
     private int max(int[] tree, int[] ints, int from, int to, int size){
         if(from == to)
             return ints[from];
-        from += size; // go to second half of the array
+        from += size;
         to += size;
         int max = Integer.MIN_VALUE;
 
         while (from < to) {
-            if ((from & 1) == 1) { // 'from' is odd, so it is the right child of its parent, then interval includes node 'from' but doesn't include its parent
+            if ((from & 1) == 1) {
                 max = Math.max(max, tree[from]);
                 from++;
             }
-            if ((to & 1) == 1) { // 'to' is odd, so it's the right child of its parent, then might as well use the parent
+            if ((to & 1) == 1) {
                 to--;
                 max = Math.max(max, tree[to]);
             }
-            from >>= 1; // shift right is the same as divide by 2 but a little faster
+            from >>= 1;
             to >>= 1;
         }
 
