@@ -1,4 +1,4 @@
-package com.learn.sub;
+package com.learn.sub.containerWithMostWater;
 
 public class ContainerWithMostWater {
     public int maxArea(int[] height) {
