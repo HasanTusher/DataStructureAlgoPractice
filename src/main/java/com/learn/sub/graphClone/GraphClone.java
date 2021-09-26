@@ -36,6 +36,12 @@ public class GraphClone {
     }
 
     private Node traverseAndClone(Node node){
+        if(node ==null){
+            return null;
+        }
+        if(node.neighbors.isEmpty()){
+            return new Node(1);
+        }
         //traverse
         Queue<Node> graph = new LinkedList<>();
 
@@ -82,7 +88,8 @@ public class GraphClone {
         return this.traverseAndClone(node);
     }
     public static void main(String[] args) {
-        int arr[][] = {{2,4},{1,3},{2,4},{1,3}};
+//        int arr[][] = {{2,4},{1,3},{2,4},{1,3}};
+        int arr[][] = {{2},{1}};
         GraphClone graphClone  = new GraphClone();
         Node aa = graphClone.createGraphFromArrays(arr);
         Node x = graphClone.cloneGraph(aa);
