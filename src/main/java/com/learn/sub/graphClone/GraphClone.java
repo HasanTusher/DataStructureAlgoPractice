@@ -1,14 +1,52 @@
 package com.learn.sub.graphClone;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class GraphClone {
+
+    private List<Integer> getTraversalVals(Node current, HashSet<Node> alreadyTraversed, Queue<Node> graph) {
+        List<Node> nodes = current.neighbors;
+        List<Integer> integers = new ArrayList<>();
+        for (Node node:
+             nodes) {
+            //if(!alreadyTraversed.contains(node)){
+                graph.add(node);
+                integers.add(node.val);
+//            }
+
+        }
+        return integers;
+
+    }
+
+    private Node traverseAndClone(Node node){
+        //traverse
+        Queue<Node> graph = new LinkedList<>();
+
+        Node head = node;
+        HashSet<Node> alreadyTraversed = new HashSet<>();
+        graph.add(head);
+        List<List<Integer>> lists = new ArrayList<>();
+        while (!graph.isEmpty()){
+            Node current = graph.poll();
+            if(!alreadyTraversed.contains(current)){
+                List<Integer> connectedVals = this.getTraversalVals(current, alreadyTraversed, graph);
+                lists.add(connectedVals);
+                alreadyTraversed.add(current);
+            }
+
+        }
+
+        return node;
+
+    }
+
+
 
     public Node cloneGraph(Node node) {
 
 
-        return node;
+        return this.traverseAndClone(node);
     }
     public static void main(String[] args) {
         int arr[][] = {{2,4},{1,3},{2,4},{1,3}};
