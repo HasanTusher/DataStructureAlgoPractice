@@ -22,15 +22,13 @@ public class GraphClone {
         return listOfNodes[0];
     }
 
-    private List<Integer> getTraversalVals(Node current, HashSet<Node> alreadyTraversed, Queue<Node> graph) {
+    private List<Integer> getTraversalVals(Node current, Queue<Node> graph) {
         List<Node> nodes = current.neighbors;
         List<Integer> integers = new ArrayList<>();
         for (Node node:
              nodes) {
-            //if(!alreadyTraversed.contains(node)){
                 graph.add(node);
                 integers.add(node.val);
-//            }
 
         }
         return integers;
@@ -44,21 +42,40 @@ public class GraphClone {
         Node head = node;
         HashSet<Node> alreadyTraversed = new HashSet<>();
         graph.add(head);
-        List<List<Integer>> lists = new ArrayList<>();
+        HashMap<Integer, List<Integer>> lists = new HashMap<>();
         while (!graph.isEmpty()){
             Node current = graph.poll();
             if(!alreadyTraversed.contains(current)){
-                List<Integer> connectedVals = this.getTraversalVals(current, alreadyTraversed, graph);
-                lists.add(connectedVals);
+                List<Integer> connectedVals = this.getTraversalVals(current, graph);
+                lists.put(current.val, connectedVals);
                 alreadyTraversed.add(current);
             }
 
         }
 
-        return this.createGraphFromArrays2(lists);
+        return this.createGraphFromArrays3(lists, alreadyTraversed);
 
     }
 
+    private Node createGraphFromArrays3(HashMap<Integer, List<Integer>> lists, HashSet<Node> alreadyTraversed) {
+        int size = alreadyTraversed.size();
+        Node[] listOfNodes = new Node[size];
+        for (int i = 0; i < size; i++) {
+            listOfNodes[i] = new Node(i+1);
+        }
+
+        Iterator iterator = lists.entrySet().iterator();
+        for (Map.Entry mapElement : lists.entrySet()) {
+            Integer key = (Integer)mapElement.getKey();
+            List<Integer> integers = lists.get(key);
+            for (Integer integer:
+                 integers) {
+                listOfNodes[key-1].neighbors.add(listOfNodes[integer-1]);
+            }
+
+        }
+        return listOfNodes[0];
+    }
 
 
     public Node cloneGraph(Node node) {
