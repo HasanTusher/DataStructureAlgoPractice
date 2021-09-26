@@ -1,7 +1,6 @@
 package com.learn.sub.courseSchedule;
 
-import java.util.HashSet;
-import java.util.Stack;
+import java.util.*;
 
 public class CourseSchedule {
 
@@ -10,9 +9,9 @@ public class CourseSchedule {
         Stack<Integer> stack = new Stack<>();
         boolean canBeCompleted = true;
 
-        stack.push(index);
+        stack.add(index);
         int root = index;
-        while (!stack.empty()){
+        while (!stack.isEmpty()){
             int current = stack.pop();
             if(!completed.contains(current)){
                 for (int i = 0; i < prerequisites.length; i++) {
@@ -20,8 +19,8 @@ public class CourseSchedule {
                         //add the other one to the
                         if (prerequisites[i][1] == root)
                             return false;
+                        stack.add(prerequisites[i][1]);
                     }
-                    stack.add(prerequisites[i][1]);
                 }
                 completed.add(current);
             }
@@ -47,9 +46,11 @@ public class CourseSchedule {
     }
 
     public static void main(String[] args) {
-        int arr[][] = {{1,0},{0,1}};
+//        3
+//                [[1,0],[2,1]]
+        int arr[][] = {{1,0},{2,1}};
         CourseSchedule courseSchedule = new CourseSchedule();
-        boolean xx = courseSchedule.canFinish(2, arr);
+        boolean xx = courseSchedule.canFinish(3, arr);
         System.out.println(xx);
     }
 }
