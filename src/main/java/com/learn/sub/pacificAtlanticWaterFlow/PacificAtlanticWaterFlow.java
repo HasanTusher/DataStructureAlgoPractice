@@ -40,28 +40,56 @@ public class PacificAtlanticWaterFlow {
         Stack<Cell> stack= new Stack<>();
         HashSet<Cell> completed = new HashSet<>();
 
-        completed.add(new Cell(1,2));
-        completed.add(new Cell(1,2));
-        boolean x = completed.contains(new Cell(1,2));
+        Cell root= new Cell(i,j);
+        stack.add(root);
 
+        while (!stack.empty()){
+            Cell current = stack.pop();
+            if(!completed.contains(current)){
+                if (current.row == 0 || current.col == 0){
+                    canReachPacific = true;
+                }
+                if (current.col == heights[0].length-1 || current.col == heights.length-1)
+                    canReachAtlantic = true;
 
+                if(canReachAtlantic && canReachPacific)
+                    return true;
 
+                if(current.row-1 >= 0 && heights[current.row-1][current.col] <= heights[current.row][current.col]){
+                    stack.add(new Cell(current.row-1, current.col)); // left
+                }
+                if(current.col-1 >=0 && heights[current.row][current.col-1] <=heights[current.row][current.col])
+                {
+                    stack.add(new Cell(current.row, current.col-1)); // up
+                }
+                if(current.row+1 < heights.length && heights[current.row+1][current.col] <= heights[current.row][current.col]){
+                    stack.add(new Cell(current.row+1, current.col)); // down
+                }
+                if(current.col+1 < heights[0].length && heights[current.row][current.col+1] <= heights[current.row][current.col]){
+                    stack.add(new Cell(current.row, current.col+1)); // right
+                }
+
+                completed.add(current);
+            }
+
+        }
         return canReachAtlantic && canReachPacific;
 
     }
 
     public List<List<Integer>> pacificAtlantic(int[][] heights) {
         List<List<Integer>> results = new ArrayList<>();
-        for (int i = 0; i < heights.length; i++) {
-            for (int j = 0; j < heights[i].length; j++) {
-                if (this.canReachBothOcean(i, j, heights)) {
-                    List<Integer> integers = new ArrayList<>();
-                    integers.add(i);
-                    integers.add(j);
-                    results.add(integers);
-                }
-            }
-        }
+//        for (int i = 0; i < heights.length; i++) {
+//            for (int j = 0; j < heights[i].length; j++) {
+//                if (this.canReachBothOcean(i, j, heights)) {
+//                    List<Integer> integers = new ArrayList<>();
+//                    integers.add(i);
+//                    integers.add(j);
+//                    results.add(integers);
+//                }
+//            }
+//        }
+        boolean x = this.canReachBothOcean(3,0, heights);
 
         return results;
     }
