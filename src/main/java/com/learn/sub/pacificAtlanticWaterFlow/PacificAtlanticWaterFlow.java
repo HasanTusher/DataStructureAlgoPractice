@@ -1,9 +1,32 @@
 package com.learn.sub.pacificAtlanticWaterFlow;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class PacificAtlanticWaterFlow {
+
+    class Cell {
+        public Integer row;
+        public Integer col;
+
+        public Cell(Integer row, Integer col) {
+            this.row = row;
+            this.col = col;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Cell cell = (Cell) o;
+            return Objects.equals(row, cell.row) &&
+                    Objects.equals(col, cell.col);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(row, col);
+        }
+    }
 
     private boolean canReachBothOcean(int i, int j, int[][] heights) {
         boolean canReachPacific = false;         //column 0 row 0 ==> pacific ocean
@@ -12,6 +35,16 @@ public class PacificAtlanticWaterFlow {
 
         if (i == 0 || j == 0) canReachPacific = true;
         if (j == heights[0].length-1 || i == heights.length-1) canReachAtlantic = true;
+
+
+        Stack<Cell> stack= new Stack<>();
+        HashSet<Cell> completed = new HashSet<>();
+
+        completed.add(new Cell(1,2));
+        completed.add(new Cell(1,2));
+        boolean x = completed.contains(new Cell(1,2));
+
+
 
         return canReachAtlantic && canReachPacific;
 
