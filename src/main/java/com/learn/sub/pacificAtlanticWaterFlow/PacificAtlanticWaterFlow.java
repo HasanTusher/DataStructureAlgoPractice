@@ -34,7 +34,7 @@ public class PacificAtlanticWaterFlow {
         boolean canReachAtlantic = false;         //column (heights[r].length-1) row heights. ==> atlantic ocean
 
         if (i == 0 || j == 0) canReachPacific = true;
-        if (j == heights[0].length-1 || i == heights.length-1) canReachAtlantic = true;
+        if (i == heights.length-1 || j == heights[0].length-1) canReachAtlantic = true;
 
 
         Stack<Cell> stack= new Stack<>();
@@ -49,7 +49,7 @@ public class PacificAtlanticWaterFlow {
                 if (current.row == 0 || current.col == 0){
                     canReachPacific = true;
                 }
-                if (current.col == heights[0].length-1 || current.col == heights.length-1)
+                if (current.row == heights.length-1 || current.col == heights[0].length-1)
                     canReachAtlantic = true;
 
                 if(canReachAtlantic && canReachPacific)
@@ -79,17 +79,17 @@ public class PacificAtlanticWaterFlow {
 
     public List<List<Integer>> pacificAtlantic(int[][] heights) {
         List<List<Integer>> results = new ArrayList<>();
-//        for (int i = 0; i < heights.length; i++) {
-//            for (int j = 0; j < heights[i].length; j++) {
-//                if (this.canReachBothOcean(i, j, heights)) {
-//                    List<Integer> integers = new ArrayList<>();
-//                    integers.add(i);
-//                    integers.add(j);
-//                    results.add(integers);
-//                }
-//            }
-//        }
-        boolean x = this.canReachBothOcean(3,0, heights);
+        for (int i = 0; i < heights.length; i++) {
+            for (int j = 0; j < heights[i].length; j++) {
+                if (this.canReachBothOcean(i, j, heights)) {
+                    List<Integer> integers = new ArrayList<>();
+                    integers.add(i);
+                    integers.add(j);
+                    results.add(integers);
+                }
+            }
+        }
+//        boolean x = this.canReachBothOcean(3,0, heights);
 
         return results;
     }
