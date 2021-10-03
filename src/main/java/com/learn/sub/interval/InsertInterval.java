@@ -71,12 +71,15 @@ public class InsertInterval {
             {
                 integers.add(upper);
                 ending = j;
+                break;
             }else if(upper >=tempLower && upper <=tempUpper){
                 integers.add(tempUpper);
                 ending = j;
+                break;
             }else if(j == intervals.length-1 && upper > tempUpper){
                 integers.add(upper);
                 ending = j;
+                break;
             }
         }
 
@@ -113,12 +116,15 @@ public class InsertInterval {
             {
                 integers.add(upper);
                 ending = j;
+                break;
             }else if(upper >=tempLower && upper <=tempUpper){
                 integers.add(tempUpper);
                 ending = j;
+                break;
             }else if(j == intervals.length-1 && upper > tempUpper){
                 integers.add(upper);
                 ending = j;
+                break;
             }
         }
 
@@ -142,8 +148,8 @@ public class InsertInterval {
 //        int[][] intervals = {{1,3},{6,9}};
 //        int[][] intervals = {{1,3},{4,6}, {10,12}};
 //        int[][] intervals = {{9,13}};
-        int[][] intervals = {{2,5},{6,7},{8,9}};
-        int[] newInterval = {0,1};
+        int[][] intervals = {{2,4},{5,7},{8,10}, {11,13}};
+        int[] newInterval = {3,6};
 //[0,1]
 //        int[][] intervals= {{1,5}, {}};
 //        int[] newInterval = {0,1};
