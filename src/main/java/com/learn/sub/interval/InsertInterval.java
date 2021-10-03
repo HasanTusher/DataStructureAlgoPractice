@@ -10,24 +10,28 @@ public class InsertInterval {
 
         //int[][] res= new int[newInterval.length][2];
         List<List<Integer>> lists = new ArrayList<>();
+        boolean x = false;
         //1. find the starting position of the new interval
         for (int i = 0; i < intervals.length; i++) {
             if(intervals[i][0] <= newInterval[0] && intervals[i][1] >=newInterval[0])
             {
                 List<List<Integer>> lists1 = this.handleInMiddle(i, intervals, newInterval);
                 lists.addAll(lists1);
+                x= true;
                 break;
             }
             else if(intervals[i][0] >= newInterval[0] && intervals[i][1] >=newInterval[1])
             {
                 List<List<Integer>> lists1 = this.handleBetweenTwo(i, intervals, newInterval);
                 lists.addAll(lists1);
+                x= true;
+
                 break;
             }
             else if(intervals[i][0] >= newInterval[0]){
                 List<List<Integer>> lists1 = this.handleLeft(i, intervals, newInterval);
                 lists.addAll(lists1);
-//                break;
+                x= true;
                 break;
             }else
             {
@@ -36,6 +40,11 @@ public class InsertInterval {
 
         }
 
+
+        if(x == false)
+        {
+            lists.add(Arrays.asList(newInterval[0], newInterval[1]));
+        }
 
         int[][] res = new int[lists.size()][2];
         for (int i = 0; i < lists.size(); i++) {
@@ -72,6 +81,8 @@ public class InsertInterval {
         }
 
         lists.add(integers);
+        if(ending == intervals.length-1)
+            return lists;
         for (int j = ending; j < intervals.length ; j++) {
             lists.add(Arrays.asList(intervals[j][0], intervals[j][1]));
         }
@@ -111,6 +122,8 @@ public class InsertInterval {
         }
 
         lists.add(integers);
+        if(ending == intervals.length-1)
+            return lists;
         for (int j = ending; j < intervals.length ; j++) {
             lists.add(Arrays.asList(intervals[j][0], intervals[j][1]));
         }
@@ -124,10 +137,11 @@ public class InsertInterval {
 
     public static void main(String[] args) {
 
-//        int[][] intervals = {{1,3},{6,9}};
+        int[][] intervals = {{1,3},{6,9}};
 //        int[][] intervals = {{1,3},{4,6}, {10,12}};
-        int[][] intervals= {{1,2},{3,5},{6,7},{8,10},{12,16}};
-        int[] newInterval = {4, 8};
+//        int[][] intervals = {{9,13}};
+//        int[][] intervals= {{1,2},{3,5},{6,7},{8,10},{12,16}};
+        int[] newInterval = {2, 5};
 
 
         InsertInterval insertInterval = new InsertInterval();
