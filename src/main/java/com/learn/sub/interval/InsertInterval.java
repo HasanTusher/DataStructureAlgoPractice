@@ -14,10 +14,20 @@ public class InsertInterval {
         for (int i = 0; i < intervals.length; i++) {
             if(intervals[i][0] <= newInterval[0] && intervals[i][1] >=newInterval[0])
             {
+                System.out.println("Here");
                 System.out.println(i);
-            }else{
-                List<Integer> integers = Arrays.asList(intervals[i][0], intervals[i][1]);
-                lists.add(integers);
+                break;
+            }
+            else if(intervals[i][0] >= newInterval[0] && intervals[i][1] >=newInterval[1])
+            {
+                System.out.println("there");
+                System.out.println(i);
+                break;
+            }
+            else if(intervals[i][0] >= newInterval[0]){
+                System.out.println("yaya");
+                System.out.println(i);
+                break;
             }
 
         }
@@ -26,8 +36,9 @@ public class InsertInterval {
     }
     public static void main(String[] args) {
 
-        int[][] intervals = {{1,3},{6,9}};
-        int[] newInterval = {2,5};
+//        int[][] intervals = {{1,3},{6,9}};
+        int[][] intervals = {{1,3},{4,6}, {10,12}};
+        int[] newInterval = {4, 10};
 
 
         InsertInterval insertInterval = new InsertInterval();
