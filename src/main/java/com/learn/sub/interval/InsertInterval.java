@@ -20,7 +20,7 @@ public class InsertInterval {
                 x= true;
                 break;
             }
-            else if(intervals[i][0] >= newInterval[0] && intervals[i][0] >=newInterval[1])
+            else if(intervals[i][0] >= newInterval[0] && intervals[i][0] >newInterval[1])
             {
                 List<List<Integer>> lists1 = this.handleBetweenTwo(i, intervals, newInterval);
                 lists.addAll(lists1);
@@ -95,7 +95,7 @@ public class InsertInterval {
         List<Integer> integers = this.addInterval(newInterval[0], newInterval[1]);
         lists.add(integers);
         for (int j = i; j <intervals.length ; j++) {
-            lists.add(Arrays.asList(intervals[i][0], intervals[i][1]));
+            lists.add(Arrays.asList(intervals[j][0], intervals[j][1]));
         }
         return lists;
     }
@@ -142,8 +142,11 @@ public class InsertInterval {
 //        int[][] intervals = {{1,3},{6,9}};
 //        int[][] intervals = {{1,3},{4,6}, {10,12}};
 //        int[][] intervals = {{9,13}};
-        int[][] intervals= {{1,5}};
-        int[] newInterval = {0,3};
+        int[][] intervals = {{2,5},{6,7},{8,9}};
+        int[] newInterval = {0,1};
+//[0,1]
+//        int[][] intervals= {{1,5}, {}};
+//        int[] newInterval = {0,1};
 //        int[][] intervals= {{1,2},{3,5},{6,7},{8,10},{12,16}};
 //        int[] newInterval = {2, 5};
 
