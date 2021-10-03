@@ -84,7 +84,8 @@ public class InsertInterval {
         if(ending == intervals.length-1)
             return lists;
         for (int j = ending; j < intervals.length ; j++) {
-            lists.add(Arrays.asList(intervals[j][0], intervals[j][1]));
+            if(intervals[j][1] > integers.get(1))
+                lists.add(Arrays.asList(intervals[j][0], intervals[j][1]));
         }
         return lists;
     }
@@ -122,10 +123,11 @@ public class InsertInterval {
         }
 
         lists.add(integers);
-        if(ending == intervals.length-1)
-            return lists;
+//        if(ending == intervals.length-1)
+//            return lists;
         for (int j = ending; j < intervals.length ; j++) {
-            lists.add(Arrays.asList(intervals[j][0], intervals[j][1]));
+            if(intervals[j][1] > integers.get(1))
+                lists.add(Arrays.asList(intervals[j][0], intervals[j][1]));
         }
         return lists;
 
@@ -137,10 +139,10 @@ public class InsertInterval {
 
     public static void main(String[] args) {
 
-        int[][] intervals = {{1,3},{6,9}};
+//        int[][] intervals = {{1,3},{6,9}};
 //        int[][] intervals = {{1,3},{4,6}, {10,12}};
 //        int[][] intervals = {{9,13}};
-//        int[][] intervals= {{1,2},{3,5},{6,7},{8,10},{12,16}};
+        int[][] intervals= {{1,2},{3,5},{6,7},{8,10},{12,16}};
         int[] newInterval = {2, 5};
 
 
