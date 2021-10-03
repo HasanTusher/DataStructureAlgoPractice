@@ -25,8 +25,9 @@ public class InsertInterval {
                 break;
             }
             else if(intervals[i][0] >= newInterval[0]){
-                //System.out.println("yaya");
-                //System.out.println(i);
+                List<List<Integer>> lists1 = this.handleLeft(i, intervals, newInterval);
+                lists.addAll(lists1);
+//                break;
                 break;
             }else
             {
@@ -46,6 +47,35 @@ public class InsertInterval {
             System.out.println(Arrays.toString(res[i]));
         }
         return res;
+    }
+
+    private List<List<Integer>> handleLeft(int i, int[][] intervals, int[] newInterval) {
+        List<List<Integer>> lists = new ArrayList<>();
+        List<Integer> integers = new ArrayList<>();
+        integers.add(newInterval[0]);
+        int upper = newInterval[1];
+        int ending  = 0;
+        for (int j = i; j < intervals.length; j++) { //loop through and find the appropiate ending
+            int tempLower = intervals[j][0];
+            int tempUpper = intervals[j][1];
+            if(tempLower > upper)
+            {
+                integers.add(upper);
+                ending = j;
+            }else if(upper >=tempLower && upper <=tempUpper){
+                integers.add(tempUpper);
+                ending = j;
+            }else if(j == intervals.length-1 && upper > tempUpper){
+                integers.add(upper);
+                ending = j;
+            }
+        }
+
+        lists.add(integers);
+        for (int j = ending; j < intervals.length ; j++) {
+            lists.add(Arrays.asList(intervals[j][0], intervals[j][1]));
+        }
+        return lists;
     }
 
     private List<List<Integer>> handleBetweenTwo(int i, int[][] intervals, int[] newInterval) {
@@ -95,8 +125,9 @@ public class InsertInterval {
     public static void main(String[] args) {
 
 //        int[][] intervals = {{1,3},{6,9}};
-        int[][] intervals = {{1,3},{4,6}, {10,12}};
-        int[] newInterval = {7, 9};
+//        int[][] intervals = {{1,3},{4,6}, {10,12}};
+        int[][] intervals= {{1,2},{3,5},{6,7},{8,10},{12,16}};
+        int[] newInterval = {4, 8};
 
 
         InsertInterval insertInterval = new InsertInterval();
