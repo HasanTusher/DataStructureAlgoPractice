@@ -9,6 +9,7 @@ import java.util.Stack;
 public class MergeInterval {
 
     public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
         List<List<Integer>> list = new ArrayList<>();
         list.add(Arrays.asList(intervals[0][0], intervals[0][1]));
         for (int i = 1; i < intervals.length; i++) {
@@ -34,7 +35,6 @@ public class MergeInterval {
         }
 
         int[][] res = new int[list.size()][2];
-//        int i = 0;
         for (int j = 0; j < list.size(); j++) {
             List<Integer> tempInterval = list.get(j);
             int[] ints = new int[2];
@@ -50,7 +50,7 @@ public class MergeInterval {
         return res;
     }
     public static void main(String[] args) {
-        int[][] intervals = {{1,3}, {0,0}};
+        int[][] intervals = {{1,4}, {0,0}};
         MergeInterval mergeInterval = new MergeInterval();
         mergeInterval.merge(intervals);
     }
