@@ -1,5 +1,7 @@
 package com.learn.sub.reverseLinkedList;
 
+import com.learn.sub.addTwoNum.ListNode;
+
 public class ReverseLinkedList {
 
     public ListNode reverseList(ListNode head) {
