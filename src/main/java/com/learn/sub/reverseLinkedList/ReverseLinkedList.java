@@ -3,13 +3,31 @@ package com.learn.sub.reverseLinkedList;
 public class ReverseLinkedList {
 
     public ListNode reverseList(ListNode head) {
-        return null;
+        if(head.next == null){
+            return head;
+        }
+        ListNode ptr = head;
+        ListNode previous = null;
+
+
+        while (ptr != null){
+          ListNode next = ptr.next;
+          ptr.next = previous;
+          previous = ptr;
+          ptr = next;
+        }
+
+        //System.out.println(previous.val);
+        //this.print(previous);
+        return previous;
+
     }
     public static void main(String[] args) {
         ReverseLinkedList reverseLinkedList = new ReverseLinkedList();
-        int[] a = {1,2,3,4,5};
+        int[] a = {1,2};
         ListNode listNode = reverseLinkedList.createList(a);
-        reverseLinkedList.print(listNode);
+        reverseLinkedList.reverseList(listNode);
+        //reverseLinkedList.print(listNode);
 
     }
 
