@@ -2,8 +2,11 @@ package com.learn.sub;
 
 import com.learn.sub.addTwoNum.ListNode;
 import com.learn.sub.reverseLinkedList.ReverseLinkedList;
+import sun.awt.X11.XQueryTree;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class MergeTowLinkList {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
@@ -16,52 +19,48 @@ public class MergeTowLinkList {
         ListNode right = l2;
 
 
-        ListNode lastLeft = new ListNode();
-        ListNode lastRight = new ListNode();
+        //ListNode lastLeft = new ListNode();
+        //ListNode lastRight = new ListNode();
 
-        ListNode newHead = left.val < right.val ? left : right;
-
+        //ListNode newHead = left.val < right.val ? left : right;
+        Queue<ListNode> listNodes = new LinkedList<>();
         while (left !=null && right !=null){
             if(left.val < right.val){
-                //where to go
-                if(left.next !=null && left.next.val < right.val){
-                    lastLeft = left;
-                    left = left.next;
-                    continue;
-                }
-                lastLeft = left;
-                ListNode temp = left.next;
-                left.next = right;
-                left = temp;
-            }else {
-                if(right.next !=null && right.next.val < left.val){
-                    lastRight = right;
-                    right = right.next;
-                    continue;
-                }
-                lastRight = right;
-                ListNode temp = right.next;
-                right.next = left;
-                right = temp;
+                listNodes.add(left);
+                left = left.next;
+            }else{
+                listNodes.add(right);
+                right= right.next;
             }
         }
 
-        if (left!=null){
-            lastRight.next = left;
+        while (left!=null){
+            listNodes.add(left);
+            left = left.next;
         }
 
-        if (right!=null){
-            lastLeft.next = right;
+        while (right!=null){
+            listNodes.add(right);
+            right = right.next;
         }
 
+        ListNode newHead = listNodes.poll();
+        ListNode curr = newHead;
+        curr.next = null;
+        while (!listNodes.isEmpty()){
+            ListNode temp = listNodes.poll();
+            temp.next = null;
+            curr.next  = temp;
+            curr = temp;
+        }
         this.print(newHead);
         return newHead;
     }
 
     public static void main(String[] args) {
         MergeTowLinkList reverseLinkedList = new MergeTowLinkList();
-        int[] a = {1,2, 4};
-        int[] b = {7,13,21};
+        int[] a = {-9,3};
+        int[] b = {5,7};
         ListNode listNode = reverseLinkedList.createList(a);
         ListNode listNode2 = reverseLinkedList.createList(b);
         reverseLinkedList.mergeTwoLists(listNode, listNode2);
