@@ -4,18 +4,31 @@ import com.learn.sub.addTwoNum.ListNode;
 
 public class LinkListCycle {
     public boolean hasCycle(ListNode head) {
+        if(head.next == null)
+            return true;
+        ListNode ptr = head;
+        ListNode ptr2 = head.next;
+        //increase ptr by 1
+        while (ptr!=null && ptr2!=null){
+            if(ptr!=null){
+                ptr = ptr.next;
+            }
 
-
-
-        return true;
+            if(ptr2 != null){
+                ptr2 = ptr2.next == null ? ptr2.next : ptr2.next.next;
+            }
+            if(ptr == ptr2 && ptr!= null)
+                return true;
+        }
+        return false;
     }
 
 
     public static void main(String[] args) {
-        int[] a = {3,2,0,-4};
+        int[] a = {1};
         LinkListCycle linkListCycle = new LinkListCycle();
-        ListNode listNode = linkListCycle.createListWithCycle(a, 0);
-        linkListCycle.print(listNode);
+        ListNode listNode = linkListCycle.createListWithCycle(a, -1);
+        System.out.println(linkListCycle.hasCycle(listNode));;
     }
 
     private ListNode createListWithCycle(int[] a, int k) {
