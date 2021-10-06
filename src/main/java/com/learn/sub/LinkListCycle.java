@@ -4,8 +4,8 @@ import com.learn.sub.addTwoNum.ListNode;
 
 public class LinkListCycle {
     public boolean hasCycle(ListNode head) {
-        if(head.next == null)
-            return true;
+        if(head == null || head.next == null)
+            return false;
         ListNode ptr = head;
         ListNode ptr2 = head.next;
         //increase ptr by 1
