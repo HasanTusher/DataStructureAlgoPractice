@@ -11,26 +11,22 @@ public class RemoveNthNodeFromEnd {
         ListNode secondPtr = head;
         //set second pointer in the correct position
         for (int i = 0; i < n; i++) {
-            if(secondPtr != null)
+            if(secondPtr.next != null)
                 secondPtr = secondPtr.next;
             else
                 break;
         }
 
-        if(secondPtr == null) // we have to remove the head
+        if(secondPtr.next == null) // we have to remove the head
         {
             head = head.next;
+            this.print(head);
             return head;
         }
 
         //still more traversing to do
-        while (secondPtr!=null){
-            for (int i = 0; i < n; i++) {
-                if(secondPtr!=null)
-                    secondPtr = secondPtr.next;
-                else
-                    break;
-            }
+        while (secondPtr.next!=null){
+            secondPtr = secondPtr.next;
             ptr = ptr.next;
         }
 
@@ -39,11 +35,11 @@ public class RemoveNthNodeFromEnd {
         return head;
     }
     public static void main(String[] args) {
-        int[] head = {1,2,3,4,5};
+        int[] head = {1,2};
         int n = 2;
         RemoveNthNodeFromEnd removeNthNodeFromEnd = new RemoveNthNodeFromEnd();
         ListNode  listNode = removeNthNodeFromEnd.createList(head);
-        removeNthNodeFromEnd.removeNthFromEnd(listNode, 4);
+        removeNthNodeFromEnd.removeNthFromEnd(listNode, 1);
         //removeNthNodeFromEnd.print(listNode);
 
     }
