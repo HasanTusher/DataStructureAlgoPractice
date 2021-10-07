@@ -1,20 +1,50 @@
 package com.learn.sub;
 
 import com.learn.sub.addTwoNum.ListNode;
-
-import java.util.List;
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 public class RemoveNthNodeFromEnd {
 
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        return  null;
+
+        ListNode ptr = head;
+        ListNode secondPtr = head;
+        //set second pointer in the correct position
+        for (int i = 0; i < n; i++) {
+            if(secondPtr != null)
+                secondPtr = secondPtr.next;
+            else
+                break;
+        }
+
+        if(secondPtr == null) // we have to remove the head
+        {
+            head = head.next;
+            return head;
+        }
+
+        //still more traversing to do
+        while (secondPtr!=null){
+            for (int i = 0; i < n; i++) {
+                if(secondPtr!=null)
+                    secondPtr = secondPtr.next;
+                else
+                    break;
+            }
+            ptr = ptr.next;
+        }
+
+        ptr.next = ptr.next.next;
+        this.print(head);
+        return head;
     }
     public static void main(String[] args) {
         int[] head = {1,2,3,4,5};
         int n = 2;
         RemoveNthNodeFromEnd removeNthNodeFromEnd = new RemoveNthNodeFromEnd();
         ListNode  listNode = removeNthNodeFromEnd.createList(head);
-        removeNthNodeFromEnd.print(listNode);
+        removeNthNodeFromEnd.removeNthFromEnd(listNode, 4);
+        //removeNthNodeFromEnd.print(listNode);
 
     }
 
