@@ -8,13 +8,17 @@ import java.util.stream.Collectors;
 
 public class BinaryTreeLevelOrderTraversal {
 
-    public List<List<Integer>> levelOrder(TreeNode root) {
+
+    private List<List<Integer>> postOrderTraversal(TreeNode root, TreeNode actualRoot) {
         if(root == null)
             return Collections.emptyList();
-        List<List<Integer>> left = this.levelOrder(root.left);
-        List<List<Integer>> right = this.levelOrder(root.right);
+        List<List<Integer>> left = this.postOrderTraversal(root.left, root);
+        List<List<Integer>> right = this.postOrderTraversal(root.right, root);
 
         List<List<Integer>> res = new ArrayList<>();
+        if(root == actualRoot)
+            res.add(Arrays.asList(root.val));
+
         if(root.left !=null || root.right != null)
         {
             List<Integer> tempRes = new ArrayList<>();
@@ -29,8 +33,12 @@ public class BinaryTreeLevelOrderTraversal {
             res.addAll(left);
         if(!right.isEmpty())
             res.addAll(right);
-
         return res;
+
+    }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        return this.postOrderTraversal(root, root);
     }
 
 
