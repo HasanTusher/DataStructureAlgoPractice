@@ -52,10 +52,12 @@ public class BinaryTreeLevelOrderTraversal {
 
     public TreeNode createTree() {
         TreeNode head = new TreeNode();
-        head = new TreeNode(3, null, null);
-        head.left = new TreeNode(9, null, null);
-        head.right = new TreeNode(20, null, null);
-        head.right.left = new TreeNode(15, null, null);
+        head = new TreeNode(1, null, null);
+        head.left = new TreeNode(2, null, null);
+        head.right = new TreeNode(3, null, null);
+        head.left.left = new TreeNode(4, null, null);
+        head.left.right = new TreeNode(5, null, null);;
+        head.right.left = new TreeNode(6, null, null);;;
         head.right.right = new TreeNode(7, null, null);
         return head;
     }
