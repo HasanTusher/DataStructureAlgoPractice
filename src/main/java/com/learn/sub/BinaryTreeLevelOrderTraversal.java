@@ -1,44 +1,61 @@
 package com.learn.sub;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class BinaryTreeLevelOrderTraversal {
 
 
-    private List<List<Integer>> postOrderTraversal(TreeNode root, TreeNode actualRoot) {
+    private List<List<Integer>> postOrderTraversal(TreeNode root) {
         if(root == null)
             return Collections.emptyList();
-        List<List<Integer>> left = this.postOrderTraversal(root.left, root);
-        List<List<Integer>> right = this.postOrderTraversal(root.right, root);
+        List<List<Integer>> lists = new ArrayList<>();
+        Queue<TreeNode> leftQueue = new LinkedList<>();
+        Queue<TreeNode> rightQueue = new LinkedList<>();
+        boolean pollFromFirst = true; //if true poll from first else from last
+        List<Integer> res = new ArrayList<>();
+        leftQueue.add(root);
+        while (!leftQueue.isEmpty() || !rightQueue.isEmpty()){
+            if(pollFromFirst == true && leftQueue.isEmpty() ){
+                //add the res to the lists
+                lists.add(res);
+                res = new ArrayList<>();
+                pollFromFirst = false;
+                continue;
 
-        List<List<Integer>> res = new ArrayList<>();
-        if(root == actualRoot)
-            res.add(Arrays.asList(root.val));
+            }
 
-        if(root.left !=null || root.right != null)
-        {
-            List<Integer> tempRes = new ArrayList<>();
-            if(root.left!=null)
-                tempRes.add(root.left.val);
-            if(root.right!=null)
-                tempRes.add(root.right.val);
-            res.add(tempRes);
+            if(pollFromFirst == false && rightQueue.isEmpty()){
+                lists.add(res);
+                res = new ArrayList<>();
+                pollFromFirst = true;
+                continue;
+            }
+
+            if(pollFromFirst == true)
+            {
+                TreeNode treeNode = leftQueue.poll();
+                res.add(treeNode.val);
+                if(treeNode.left!=null)
+                    rightQueue.add(treeNode.left);
+                if(treeNode.right != null)
+                    rightQueue.add(treeNode.right);
+            }else{
+                TreeNode treeNode = rightQueue.poll();
+                res.add(treeNode.val);
+                if(treeNode.left!=null)
+                    leftQueue.add(treeNode.left);
+                if(treeNode.right != null)
+                    leftQueue.add(treeNode.right);
+            }
         }
+        lists.add(res);
 
-        if(!left.isEmpty())
-            res.addAll(left);
-        if(!right.isEmpty())
-            res.addAll(right);
-        return res;
-
+        return lists;
     }
 
     public List<List<Integer>> levelOrder(TreeNode root) {
-        return this.postOrderTraversal(root, root);
+        return this.postOrderTraversal(root);
     }
 
 
