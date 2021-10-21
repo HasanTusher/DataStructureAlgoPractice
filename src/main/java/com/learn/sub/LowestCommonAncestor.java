@@ -36,24 +36,29 @@ public class LowestCommonAncestor {
         if(root == null)
             return;
         this.populateTreeNodeList(root.left);
-        this.treeNodeList.add(root);
         this.populateTreeNodeList(root.right);
+        this.treeNodeList.add(root);
+
     }
 
     public static void main(String[] args) {
         LowestCommonAncestor lowestCommonAncestor = new LowestCommonAncestor();
         TreeNode treeNode = lowestCommonAncestor.createTree();
-        TreeNode aBoolean = lowestCommonAncestor.lowestCommonAncestor(treeNode, treeNode.left, treeNode.right);
+        TreeNode aBoolean = lowestCommonAncestor.lowestCommonAncestor(treeNode, treeNode.left.right.left, treeNode.left.right.right);
         System.out.println(aBoolean.val);
     }
 
     private TreeNode createTree() {
         TreeNode head = new TreeNode();
-        head = new TreeNode(5, null, null);
-        head.left = new TreeNode(1, null, null);
-        head.right = new TreeNode(4, null, null);
-        head.right.left = new TreeNode(3, null, null);
-        head.right.right = new TreeNode(6, null, null);
+        head = new TreeNode(6, null, null);
+        head.left = new TreeNode(2, null, null);
+        head.right = new TreeNode(8, null, null);
+        head.left.left = new TreeNode(0, null, null);
+        head.left.right = new TreeNode(4, null, null);
+        head.right.right = new TreeNode(9, null, null);
+        head.right.left = new TreeNode(7, null, null);
+        head.left.right.left = new TreeNode(3, null, null);
+        head.left.right.right = new TreeNode(5, null, null);
         return head;
     }
 }
