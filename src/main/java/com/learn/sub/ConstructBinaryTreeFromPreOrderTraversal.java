@@ -5,33 +5,27 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class ConstructBinaryTreeFromPreOrderTraversal {
+    int primaryIndex;
+    public TreeNode actualBuildTree(int[] preoder, HashMap<Integer, Integer> hashMap, int start, int end){
+        if(start > end)
+            return null;
 
-    public String addBinary(String a, String b) {
-        BigInteger bigInteger = new BigInteger(a, 2);
-        BigInteger bigInteger2 = new BigInteger(b, 2);
-        BigInteger x = bigInteger.add(bigInteger2);
-        String zz = x.toString(2);
-        System.out.println(zz);
-        return zz;
-    }
+        int rootVal = preoder[this.primaryIndex++];
+        TreeNode node = new TreeNode(rootVal);
 
-    public TreeNode actualBuildTree(int[] preoder, int[] inorder, HashMap<Integer, Integer> hashMap, int  position){
-
-        int root = preoder[position];
-        int positionOfRoot = hashMap.get(root);
-
-        int[] leftSubTree = new int[positionOfRoot];
-        int[] rightSubTree = new int[preoder.length-positionOfRoot];
-        return null;
+        node.left = this.actualBuildTree(preoder, hashMap, start, hashMap.get(rootVal)-1);
+        node.right = this.actualBuildTree(preoder, hashMap, hashMap.get(rootVal)+1, end);
+        return node;
     }
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         HashMap<Integer, Integer> indexOfElementInOrder = new HashMap<>();
+        this.primaryIndex = 0;
 
         for (int i = 0; i < inorder.length; i++) {
             indexOfElementInOrder.put(inorder[i], i);
         }
-        return this.actualBuildTree(preorder, inorder, indexOfElementInOrder, 0);
+        return this.actualBuildTree(preorder, indexOfElementInOrder,  0, preorder.length-1);
     }
 
     public void traverse(TreeNode newHead) {
@@ -46,8 +40,8 @@ public class ConstructBinaryTreeFromPreOrderTraversal {
     public static void main(String[] args) {
 
         int[] preorder = {3,9,20,15,7}; int[] inorder = {9,3,15,20,7};
-//        ConstructBinaryTreeFromPreOrderTraversal constructBinaryTreeFromPreOrderTraversal = new ConstructBinaryTreeFromPreOrderTraversal();
         ConstructBinaryTreeFromPreOrderTraversal constructBinaryTreeFromPreOrderTraversal = new ConstructBinaryTreeFromPreOrderTraversal();
-        constructBinaryTreeFromPreOrderTraversal.addBinary("1010", "1011");
+        TreeNode treeNode = constructBinaryTreeFromPreOrderTraversal.buildTree(preorder, inorder);
+        constructBinaryTreeFromPreOrderTraversal.traverse(treeNode);
     }
 }
