@@ -2,7 +2,6 @@ package com.learn.sub;
 
 import com.learn.sub.addTwoNum.ListNode;
 import com.learn.sub.reverseLinkedList.ReverseLinkedList;
-import sun.awt.X11.XQueryTree;
 
 import java.util.LinkedList;
 import java.util.List;

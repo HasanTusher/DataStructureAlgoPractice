@@ -1,7 +1,6 @@
 package com.learn.sub;
 
 import com.learn.sub.addTwoNum.ListNode;
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 public class RemoveNthNodeFromEnd {
 

@@ -1,6 +1,5 @@
 package com.learn.sub.hammingWeight;
 
-import sun.security.krb5.internal.crypto.HmacMd5ArcFourCksumType;
 
 public class HammingWeight {
 
