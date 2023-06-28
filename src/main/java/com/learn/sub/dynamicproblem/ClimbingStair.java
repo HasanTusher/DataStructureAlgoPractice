@@ -1,4 +1,4 @@
-package com.learn.sub.climbingStairs;
+package com.learn.sub.dynamicproblem;
 
 import java.util.HashMap;
 
