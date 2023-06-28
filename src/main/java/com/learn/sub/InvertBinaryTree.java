@@ -1,6 +1,5 @@
 package com.learn.sub;
 
-import javax.transaction.TransactionRequiredException;
 
 public class InvertBinaryTree {
 

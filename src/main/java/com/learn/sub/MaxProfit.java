@@ -2,6 +2,7 @@ package com.learn.sub;
 
 import java.util.Arrays;
 
+;
 public class MaxProfit {
 
     private int max(int[] tree, int[] ints, int from, int to, int size){
@@ -42,6 +43,7 @@ public class MaxProfit {
         }
         return Math.max(max, 0);
     }
+
     public static void main(String[] args) {
         MaxProfit maxProfit = new MaxProfit();
         int[] arr = {2,1,2,0,1};
